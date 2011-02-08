@@ -3,7 +3,9 @@
 
 class List {
   public:
-    virtual int size() = 0;
+    virtual void append(int) = 0;
+    virtual int size() const = 0;
+    virtual ~List() {}
 };
 
 #endif

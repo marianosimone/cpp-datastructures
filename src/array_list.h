@@ -5,7 +5,12 @@
 
 class ArrayList: public List {
 public:
-  virtual int size(){
+
+  virtual void append(int data) {
+
+  }
+
+  virtual int size() const {
     return 0;
   }
 };

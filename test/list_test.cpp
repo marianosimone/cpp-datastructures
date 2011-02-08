@@ -15,4 +15,8 @@ TYPED_TEST(ListTest, SizeShouldBeZeroOnCreation) {
   EXPECT_EQ(0, this->list_->size());
 }
 
+TYPED_TEST(ListTest, SizeShouldBeOneAfterAppend) {
+  this->list_->append(1);
+  EXPECT_EQ(1, this->list_->size());
+}
 #endif

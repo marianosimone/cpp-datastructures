@@ -2,11 +2,86 @@
 #define CPPDATASTRUCTURES_LINKED_LIST_H_
 
 #include "list.h"
-#include <iostream>
-class LinkedList: public List {
+
+class LinkedNode {
+private:
+  LinkedNode* next;
+  int data;
+
 public:
-  virtual int size(){
-    return 0;
+  LinkedNode() {
+    this->next = NULL;
+  }
+
+  LinkedNode(const int data) {
+    this->next = NULL;
+    this->data = data;
+  }
+
+  void setData(const int data) {
+    this->data = data;
+  }
+
+  int getData() const {
+    return this->data;
+  }
+
+  void setNext(LinkedNode* next) {
+    this->next = next;
+  }
+
+  bool hasNext() const {
+    return this->next != NULL;
+  }
+
+  LinkedNode* getNext() const {
+    return this->next;
+  }
+};
+
+class LinkedList: public List {
+private:
+  LinkedNode* first;
+
+public:
+  LinkedList() {
+    this->first = NULL;
+  }
+
+  virtual void append(const int data) {
+    LinkedNode* newNode = new LinkedNode(data);
+    if (this->first == NULL) {
+      this->first = newNode;
+      return;
+    }
+    LinkedNode* insertionPoint = this->first;
+    while (insertionPoint != NULL) {
+      if (insertionPoint->hasNext()) {
+        insertionPoint = insertionPoint->getNext();
+      } else {
+        insertionPoint->setNext(newNode);
+        insertionPoint = NULL;
+      }
+    }
+  }
+
+  virtual int size() const {
+    int size = 0;
+    LinkedNode* current = this->first;
+    while (current != NULL) {
+      size += 1;
+      current = current->getNext();
+    }
+    return size;
+  }
+
+  virtual ~LinkedList() {
+    LinkedNode* current = this->first;
+    while (current != NULL) {
+      LinkedNode* next = current->getNext();
+      delete current;
+      current = next;
+    }
   }
 };
 
