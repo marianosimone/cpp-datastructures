@@ -3,7 +3,7 @@
 
 class List {
   public:
-    virtual int foo() = 0;
+    virtual int size() = 0;
 };
 
 #endif

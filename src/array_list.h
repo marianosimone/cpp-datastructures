@@ -5,8 +5,8 @@
 
 class ArrayList: public List {
 public:
-  virtual int foo(){
-    return 24;
+  virtual int size(){
+    return 0;
   }
 };
 
