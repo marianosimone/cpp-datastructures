@@ -3,12 +3,11 @@
 
 #include "list.h"
 
-//template <typename T>
-class ArrayList:public List/*<T>*/{
+class ArrayList: public List {
 public:
-virtual int foo(){
-return 24;
-}
+  virtual int foo(){
+    return 24;
+  }
 };
 
 #endif

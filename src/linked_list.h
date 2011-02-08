@@ -3,12 +3,11 @@
 
 #include "list.h"
 
-//template <typename T>
-class LinkedList:public List/*<T>*/{
+class LinkedList: public List {
 public:
-virtual int foo(){
-return 1;
-}
+  virtual int foo(){
+    return 1;
+  }
 };
 
 #endif
