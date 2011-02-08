@@ -10,12 +10,12 @@ List* CreateList();
 template <>
 List* CreateList<LinkedList>() {
   return new LinkedList;
-};
+}
 
 template <>
 List* CreateList<ArrayList>() {
   return new ArrayList;
-};
+}
 
 // Test Fixture, for grouping all common functionallity
 template <class T>
