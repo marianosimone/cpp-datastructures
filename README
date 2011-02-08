@@ -1,1 +1,5 @@
 Some example implementations of data Structures, coded in C++
+
+The idea is not to give usable structures, but just examples on how you can change the implementations while working with the same interface. Doing this, you can try different approaches on how to store data and how the classes behave, without breaking existing code.
+
+Sometimes, you need fast random access, sometimes you need sequential access, or be able to sort efficiently. Depending on how you're going to USE your data structure, you have to CHOOSE the right implementation.
