@@ -1,6 +1,6 @@
 # Requires libgtest0 and libgtest-dev libraries
 
-CXXFLAGS = -O2 -g -Wall -fmessage-length=0 -lgtest_main
+CXXFLAGS = -O2 -g -pedantic -Wall -fmessage-length=0 -lpthread -lgtest_main
 
 test_files ?= $(wildcard test/*.cpp)
 src_files ?= $(wildcard src/*.cpp)
