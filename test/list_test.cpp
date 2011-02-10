@@ -16,7 +16,10 @@ TYPED_TEST(ListTest, SizeShouldBeZeroOnCreation) {
 }
 
 TYPED_TEST(ListTest, SizeShouldBeOneAfterAppend) {
-  this->list_->append(1);
-  EXPECT_EQ(1, this->list_->size());
+  int limit = 100;
+  for (int i = 0; i < limit; ++i){
+    this->list_->append(i);
+    EXPECT_EQ(i+1, this->list_->size());
+  }
 }
 #endif
