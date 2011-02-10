@@ -22,4 +22,19 @@ TYPED_TEST(ListTest, SizeShouldBeOneAfterAppend) {
     EXPECT_EQ(i+1, this->list_->size());
   }
 }
+
+TYPED_TEST(ListTest, SizeShouldBeZeroAfterClear) {
+  this->list_->append(1);
+  this->list_->append(2);
+  this->list_->clear();
+  EXPECT_EQ(0, this->list_->size());
+}
+
+TYPED_TEST(ListTest, InsertionShouldBePossibleAfterClear) {
+  this->list_->append(1);
+  this->list_->clear();
+  this->list_->append(1);
+  EXPECT_EQ(1, this->list_->size());
+}
+
 #endif

@@ -5,6 +5,7 @@ class List {
   public:
     virtual void append(int) = 0;
     virtual int size() const = 0;
+    virtual void clear() = 0;
     virtual ~List() {}
 };
 

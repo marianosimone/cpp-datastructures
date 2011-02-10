@@ -34,6 +34,10 @@ public:
     return currentPosition+1;
   }
 
+  virtual void clear() {
+    this->currentPosition = -1;
+  }
+
   virtual ~ArrayList(){
     delete[] this->array;
   }

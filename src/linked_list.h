@@ -75,13 +75,18 @@ public:
     return size;
   }
 
-  virtual ~LinkedList() {
+  virtual void clear() {
     LinkedNode* current = this->first;
     while (current != NULL) {
       LinkedNode* next = current->getNext();
       delete current;
       current = next;
     }
+    this->first = NULL;
+  }
+
+  virtual ~LinkedList() {
+    this->clear();
   }
 };
 
