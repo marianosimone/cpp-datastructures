@@ -75,6 +75,18 @@ public:
     return size;
   }
 
+  virtual bool contains(int value) const {
+    LinkedNode* current = this->first;
+    while (current != NULL) {
+      if (current->getData() == value) {
+        return true;
+      }
+      current = current->getNext();
+    }
+    return false;
+  }
+
+
   virtual void clear() {
     LinkedNode* current = this->first;
     while (current != NULL) {

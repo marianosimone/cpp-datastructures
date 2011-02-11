@@ -34,6 +34,17 @@ public:
     return currentPosition+1;
   }
 
+  virtual bool contains(int value) const {
+    int current = 0;
+    while (current <= currentPosition){
+      if (this->array[current] == value) {
+        return true;
+      }
+      current += 1;
+    }
+    return false;
+  }
+
   virtual void clear() {
     this->currentPosition = -1;
   }

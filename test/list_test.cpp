@@ -37,4 +37,39 @@ TYPED_TEST(ListTest, InsertionShouldBePossibleAfterClear) {
   EXPECT_EQ(1, this->list_->size());
 }
 
+TYPED_TEST(ListTest, ContainsShouldBeFalseForEmptyLists) {
+  EXPECT_FALSE(this->list_->contains(13));
+}
+
+TYPED_TEST(ListTest, ContainsShouldBeFalseForValueNotInList) {
+  this->list_->append(1);
+  this->list_->append(2);
+  EXPECT_FALSE(this->list_->contains(13));
+}
+
+TYPED_TEST(ListTest, ContainsShouldBeTrueForOnlyValue) {
+  this->list_->append(1);
+  EXPECT_TRUE(this->list_->contains(1));
+}
+
+TYPED_TEST(ListTest, ContainsShouldBeTrueForValueAtBegining) {
+  this->list_->append(1);
+  this->list_->append(2);
+  this->list_->append(3);
+  EXPECT_TRUE(this->list_->contains(1));
+}
+
+TYPED_TEST(ListTest, ContainsShouldBeTrueForValueAtEnd) {
+  this->list_->append(1);
+  this->list_->append(2);
+  this->list_->append(3);
+  EXPECT_TRUE(this->list_->contains(3));
+}
+
+TYPED_TEST(ListTest, ContainsShouldBeTrueForValueAtSomePoint) {
+  this->list_->append(1);
+  this->list_->append(2);
+  this->list_->append(3);
+  EXPECT_TRUE(this->list_->contains(2));
+}
 #endif
