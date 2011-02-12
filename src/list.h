@@ -2,6 +2,8 @@
 #define CPPDATASTRUCTURES_LIST_H_
 /**
  * A list is a data structure that represents a sequence
+ * This is just an interface for all List implementations, thus
+ * it can not be instantiated
 **/
 class List {
   public:
