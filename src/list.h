@@ -1,7 +1,8 @@
 #ifndef CPPDATASTRUCTURES_LIST_H_
 #define CPPDATASTRUCTURES_LIST_H_
-/*
-*/
+/**
+ * A list is a data structure that represents a sequence
+**/
 class List {
   public:
     /**
