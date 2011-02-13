@@ -3,6 +3,31 @@
 
 #include "list.h"
 
+class ArrayListIterator: public Iterator {
+private:
+  int* array;
+  int size;
+  int current;
+
+public:
+  ArrayListIterator(int* array, int size) {
+    this->array = array;
+    this->size = size;
+    this->current = 0;
+  }
+
+  virtual bool hasNext() const {
+    return current < size;
+  }
+
+  virtual int next() {
+    return array[current++];
+  }
+
+  virtual ~ArrayListIterator() {
+  }
+};
+
 class ArrayList: public List {
 private:
   int* array;
@@ -47,6 +72,10 @@ public:
 
   virtual void clear() {
     this->currentPosition = -1;
+  }
+
+  virtual Iterator* iterator() const {
+    return new ArrayListIterator(this->array, this->size());
   }
 
   virtual ~ArrayList(){

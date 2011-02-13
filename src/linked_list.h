@@ -39,6 +39,28 @@ public:
   }
 };
 
+class LinkedListIterator: public Iterator {
+private:
+  LinkedNode* current;
+
+public:
+  LinkedListIterator(LinkedNode* first) {
+    this->current = first;
+  }
+
+  virtual bool hasNext() const {
+    return current != NULL;
+  }
+
+  virtual int next() {
+    int res = current->getData();
+    current = current->getNext();
+    return res;
+  }
+
+  virtual ~LinkedListIterator() {}
+};
+
 class LinkedList: public List {
 private:
   LinkedNode* first;
@@ -86,7 +108,6 @@ public:
     return false;
   }
 
-
   virtual void clear() {
     LinkedNode* current = this->first;
     while (current != NULL) {
@@ -95,6 +116,10 @@ public:
       current = next;
     }
     this->first = NULL;
+  }
+
+  virtual Iterator* iterator() const {
+    return new LinkedListIterator(this->first);
   }
 
   virtual ~LinkedList() {

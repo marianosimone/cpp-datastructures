@@ -72,4 +72,20 @@ TYPED_TEST(ListTest, ContainsShouldBeTrueForValueAtSomePoint) {
   this->list_->append(3);
   EXPECT_TRUE(this->list_->contains(2));
 }
+
+TYPED_TEST(ListTest, NoIterationShouldBeDoneOverEmptyList) {
+  Iterator* it = this->list_->iterator();
+  EXPECT_FALSE(it->hasNext());
+  delete it;
+}
+
+TYPED_TEST(ListTest, IterationShouldBeDoneOverOneElementList) {
+  this->list_->append(1);
+  Iterator* it = this->list_->iterator();
+  EXPECT_TRUE(it->hasNext());
+  int element = it->next();
+  EXPECT_EQ(1, element);
+  EXPECT_FALSE(it->hasNext());
+  delete it;
+}
 #endif
