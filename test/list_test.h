@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+
+#include "../src/list.h"
 #include "../src/linked_list.h"
 #include "../src/array_list.h"
 
