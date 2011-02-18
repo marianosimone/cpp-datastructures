@@ -2,6 +2,7 @@
 
 #include "../src/set.h"
 #include "../src/list_backed_set.h"
+#include "../src/hash_set.h"
 
 // Factory method template to create sets
 template <class T>
@@ -11,6 +12,11 @@ Set* CreateSet();
 template <>
 Set* CreateSet<ListBackedSet>() {
   return new ListBackedSet;
+}
+
+template <>
+Set* CreateSet<HashSet>() {
+  return new HashSet;
 }
 
 // Test Fixture, for grouping all common functionallity
