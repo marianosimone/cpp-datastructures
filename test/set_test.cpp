@@ -103,7 +103,7 @@ TYPED_TEST(SetTest, LongIterationShouldWork) {
   Iterator* it = this->set_->iterator();
   for (int i = 0; i < limit; ++i){
     EXPECT_TRUE(it->hasNext());
-    EXPECT_EQ(i, it->next());
+    it->next(); // Can't expect, as sets don't preserve order
   }
   EXPECT_FALSE(it->hasNext());
   delete it;
