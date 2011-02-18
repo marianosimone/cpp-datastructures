@@ -94,4 +94,19 @@ TYPED_TEST(SetTest, IterationShouldBeDoneOverOneElementSet) {
   EXPECT_FALSE(it->hasNext());
   delete it;
 }
+
+TYPED_TEST(SetTest, LongIterationShouldWork) {
+  int limit = 200;
+  for (int i = 0; i < limit; ++i){
+    this->set_->add(i);
+  }
+  Iterator* it = this->set_->iterator();
+  for (int i = 0; i < limit; ++i){
+    EXPECT_TRUE(it->hasNext());
+    EXPECT_EQ(i, it->next());
+  }
+  EXPECT_FALSE(it->hasNext());
+  delete it;
+}
+
 #endif
