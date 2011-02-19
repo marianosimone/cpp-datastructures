@@ -1,6 +1,6 @@
 # Requires libgtest0, libgtest-dev and lcov libraries
 
-CXXFLAGS = -O2 -g -pedantic -Wall -fmessage-length=0 -lpthread -lgtest_main -fprofile-arcs -ftest-coverage --coverage
+CXXFLAGS = -g -pedantic -Wall -fmessage-length=0 -lpthread -lgtest_main -fprofile-arcs -ftest-coverage --coverage
 
 test_files ?= $(wildcard test/*.cpp)
 src_files ?= $(wildcard src/*.cpp)
