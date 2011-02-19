@@ -40,6 +40,17 @@ TYPED_TEST(StackTest, ValueShouldBePopAfterManyPushsAndStackShouldBeEmpty) {
   EXPECT_TRUE(this->stack_->isEmpty());
 }
 
+TYPED_TEST(StackTest, PushAndPopManyValues) {
+  int limit = 100;
+  for (int i = 0; i < limit; ++i) {
+    this->stack_->push(i);
+  }
+  for (int i = limit-1; i >= 0; --i) {
+    EXPECT_EQ(i,this->stack_->pop());
+  }
+  EXPECT_TRUE(this->stack_->isEmpty());
+}
+
 TYPED_TEST(StackTest, IsEmptyShouldBeTrueAfterClearWithoutValues) {
   this->stack_->clear();
   EXPECT_TRUE(this->stack_->isEmpty());
