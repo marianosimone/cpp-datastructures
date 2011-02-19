@@ -1,16 +1,28 @@
-# Requires libgtest0 and libgtest-dev libraries
+# Requires libgtest0, libgtest-dev and lcov libraries
 
-CXXFLAGS = -O2 -g -pedantic -Wall -fmessage-length=0 -lpthread -lgtest_main
+CXXFLAGS = -O2 -g -pedantic -Wall -fmessage-length=0 -lpthread -lgtest_main -fprofile-arcs -ftest-coverage --coverage
 
 test_files ?= $(wildcard test/*.cpp)
 src_files ?= $(wildcard src/*.cpp)
 o_files = $(patsubst %.cpp,%.o,$(test_files))
 o_files += $(patsubst %.cpp,%.o,$(src_files))
+output_dir ?= build
+output_bin ?= $(output_dir)/tests
 
-all:	clean tests
+.PHONY: clean test
 
-tests:	$(o_files)
-	$(CXX) $(CXXFLAGS) $(o_files) -o tests
+all:	clean build test
+
+build:	$(o_files)
+	mkdir -p -v $(output_dir)
+	$(CXX) -lgcov $(CXXFLAGS) $(o_files) -o $(output_bin)
+
+test:
+	./build/tests
+	lcov --capture --directory src --base-directory . -o $(output_dir)/report_output.out
+	genhtml -o $(output_dir)/coverage_report $(output_dir)/report_output.out
+	lcov --zerocounters --directory .
+	find . -name "*.gcno" -delete
 
 clean:
-	rm -f $(o_files) tests
+	rm -rf $(o_files) $(output_dir)
