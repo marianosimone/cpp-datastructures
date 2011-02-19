@@ -1,42 +1,27 @@
 #ifndef CPPDATASTRUCTURES_LIST_BACKED_SET_H_
 #define CPPDATASTRUCTURES_LIST_BACKED_SET_H_
 
-#include "linked_list.h"
+#include "set.h"
+#include "list.h"
 
 class ListBackedSet: public Set {
 private:
   List* list;
 
 public:
-  ListBackedSet() {
-    this->list = new LinkedList;
-  }
+  ListBackedSet();
 
-  virtual void add(const int data) {
-    if (!this->contains(data)){
-      this->list->append(data);
-    }
-  }
+  virtual void add(const int data);
 
-  virtual int size() const {
-    return this->list->size();
-  }
+  virtual int size() const;
 
-  virtual bool contains(int value) const {
-    return this->list->contains(value);
-  }
+  virtual bool contains(int value) const;
 
-  virtual void clear() {
-    this->list->clear();
-  }
+  virtual void clear();
 
-  virtual Iterator* iterator() const {
-    return this->list->iterator();
-  }
+  virtual Iterator* iterator() const;
 
-  virtual ~ListBackedSet() {
-    delete this->list;
-  }
+  virtual ~ListBackedSet();
 };
 
 #endif

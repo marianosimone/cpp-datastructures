@@ -9,21 +9,13 @@ private:
   LinkedNode* current;
 
 public:
-  LinkedListIterator(LinkedNode* first) {
-    this->current = first;
-  }
+  LinkedListIterator(LinkedNode* first);
 
-  virtual bool hasNext() const {
-    return current != NULL;
-  }
+  virtual bool hasNext() const;
 
-  virtual int next() {
-    int res = current->getData();
-    current = current->getNext();
-    return res;
-  }
+  virtual int next();
 
-  virtual ~LinkedListIterator() {}
+  virtual ~LinkedListIterator();
 };
 
 class LinkedList: public List {
@@ -31,65 +23,19 @@ private:
   LinkedNode* first;
 
 public:
-  LinkedList() {
-    this->first = NULL;
-  }
+  LinkedList();
 
-  virtual void append(const int data) {
-    LinkedNode* newNode = new LinkedNode(data);
-    if (this->first == NULL) {
-      this->first = newNode;
-      return;
-    }
-    LinkedNode* insertionPoint = this->first;
-    while (insertionPoint != NULL) {
-      if (insertionPoint->hasNext()) {
-        insertionPoint = insertionPoint->getNext();
-      } else {
-        insertionPoint->setNext(newNode);
-        insertionPoint = NULL;
-      }
-    }
-  }
+  virtual void append(const int data);
 
-  virtual int size() const {
-    int size = 0;
-    LinkedNode* current = this->first;
-    while (current != NULL) {
-      size += 1;
-      current = current->getNext();
-    }
-    return size;
-  }
+  virtual int size() const;
 
-  virtual bool contains(int value) const {
-    LinkedNode* current = this->first;
-    while (current != NULL) {
-      if (current->getData() == value) {
-        return true;
-      }
-      current = current->getNext();
-    }
-    return false;
-  }
+  virtual bool contains(int value) const;
 
-  virtual void clear() {
-    LinkedNode* current = this->first;
-    while (current != NULL) {
-      LinkedNode* next = current->getNext();
-      delete current;
-      current = next;
-    }
-    this->first = NULL;
-  }
+  virtual void clear();
 
-  virtual Iterator* iterator() const {
-    return new LinkedListIterator(this->first);
-  }
+  virtual Iterator* iterator() const;
 
-  virtual ~LinkedList() {
-    this->clear();
-  }
+  virtual ~LinkedList();
 };
 
 #endif
