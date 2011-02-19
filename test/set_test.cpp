@@ -97,7 +97,7 @@ TYPED_TEST(SetTest, IterationShouldBeDoneOverOneElementSet) {
 
 TYPED_TEST(SetTest, LongIterationShouldWork) {
   int limit = 200;
-  int values[limit];
+  int values[200];
   for (int i = 0; i < limit; ++i){
     values[i] = i;
   }
