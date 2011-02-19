@@ -109,4 +109,18 @@ TYPED_TEST(SetTest, LongIterationShouldWork) {
   delete it;
 }
 
+TYPED_TEST(SetTest, NonConsecutiveIterationShouldWork) {
+  int values[] = {1, 3, 5, 7};
+  for (int i = 0; i < 4; ++i){
+    this->set_->add(values[i]);
+  }
+  Iterator* it = this->set_->iterator();
+  for (int i = 0; i < 4; ++i){
+    EXPECT_TRUE(it->hasNext());
+    it->next(); // Can't expect, as sets don't preserve order
+  }
+  EXPECT_FALSE(it->hasNext());
+  delete it;
+}
+
 #endif
