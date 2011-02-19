@@ -97,25 +97,24 @@ TYPED_TEST(SetTest, IterationShouldBeDoneOverOneElementSet) {
 
 TYPED_TEST(SetTest, LongIterationShouldWork) {
   int limit = 200;
+  int values[limit];
   for (int i = 0; i < limit; ++i){
-    this->set_->add(i);
+    values[i] = i;
   }
-  Iterator* it = this->set_->iterator();
-  for (int i = 0; i < limit; ++i){
-    EXPECT_TRUE(it->hasNext());
-    it->next(); // Can't expect, as sets don't preserve order
-  }
-  EXPECT_FALSE(it->hasNext());
-  delete it;
+  testIteration(this->set_, values, limit);
 }
 
 TYPED_TEST(SetTest, NonConsecutiveIterationShouldWork) {
-  int values[] = {1, 3, 5, 7};
-  for (int i = 0; i < 4; ++i){
-    this->set_->add(values[i]);
+  int values[4] = {1, 3, 5, 7};
+  testIteration(this->set_, values, 4);
+}
+
+void testIteration(Set* set, int values[], int len) {
+  for (int i = 0; i < len; ++i){
+    set->add(values[i]);
   }
-  Iterator* it = this->set_->iterator();
-  for (int i = 0; i < 4; ++i){
+  Iterator* it = set->iterator();
+  for (int i = 0; i < len; ++i){
     EXPECT_TRUE(it->hasNext());
     it->next(); // Can't expect, as sets don't preserve order
   }
