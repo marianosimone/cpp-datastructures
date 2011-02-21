@@ -53,6 +53,7 @@ HashSetIterator::~HashSetIterator() {
 HashSet::HashSet() {
   this->size_ = 0;
   this->table_size = 10;
+  this->load_factor_limit = 0.75;
   this->createTable();
 }
 
@@ -98,15 +99,18 @@ void HashSet::innerAdd(int data, bool checkOverflow) {
     this->size_ += 1;
   }
   if (checkOverflow) {
-    this->doCheckOverflow(position);
+    this->doCheckOverflow();
   }
 }
 
-void HashSet::doCheckOverflow(int position) {
-  int limit = 5;
-  if (this->table[position]->size() > limit) {
+void HashSet::doCheckOverflow() {
+  if (this->loadFactor() > this->load_factor_limit) {
     this->rehashEverything();
   }
+}
+
+double HashSet::loadFactor() {
+  return ((double)this->size())/table_size;
 }
 
 void HashSet::rehashEverything() {

@@ -27,6 +27,7 @@ private:
   int table_size;
   LinkedList** table;
   int size_;
+  double load_factor_limit;
 
 public:
   HashSet();
@@ -48,12 +49,13 @@ protected:
 
   virtual void innerAdd(int data, bool checkOverflow);
 
-  virtual void doCheckOverflow(int position);
+  virtual void doCheckOverflow();
 
   virtual void rehashEverything();
 
 private:
   void createTable();
+  double loadFactor();
 };
 
 #endif
