@@ -51,6 +51,9 @@ protected:
   virtual void doCheckOverflow(int position);
 
   virtual void rehashEverything();
+
+private:
+  void createTable();
 };
 
 #endif

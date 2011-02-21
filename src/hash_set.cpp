@@ -53,10 +53,7 @@ HashSetIterator::~HashSetIterator() {
 HashSet::HashSet() {
   this->size_ = 0;
   this->table_size = 10;
-  this->table = new LinkedList*[this->table_size];
-  for (int i = 0; i < this->table_size; ++i) {
-      this->table[i] = new LinkedList();
-  }
+  this->createTable();
 }
 
 void HashSet::add(const int data) {
@@ -120,10 +117,7 @@ void HashSet::rehashEverything() {
   // create new structure
   this->size_ = 0;
   this->table_size = this->table_size*2;
-  this->table = new LinkedList*[this->table_size];
-  for (int i = 0; i < this->table_size; ++i) {
-    this->table[i] = new LinkedList();
-  }
+  this->createTable();
 
   // copy data and cleanup old table
   for (int i = 0; i < old_size; ++i) {
@@ -135,4 +129,11 @@ void HashSet::rehashEverything() {
     delete old_table[i];
   }
   delete[] old_table;
+}
+
+void HashSet::createTable() {
+  this->table = new LinkedList*[this->table_size];
+  for (int i = 0; i < this->table_size; ++i) {
+      this->table[i] = new LinkedList();
+  }
 }
