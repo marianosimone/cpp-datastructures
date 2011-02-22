@@ -3,7 +3,7 @@
 #if GTEST_HAS_TYPED_TEST
 
 // Defining which impls to test
-typedef testing::Types< ListBackedSet, HashSet > impls;
+typedef testing::Types< ListBackedSet, HashSet, CustomFunctionHashSet > impls;
 
 TYPED_TEST_CASE(SetTest, impls);
 

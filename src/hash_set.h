@@ -23,7 +23,7 @@ public:
 };
 
 class HashSet: public Set {
-private:
+protected:
   int table_size;
   LinkedList** table;
   int size_;
