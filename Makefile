@@ -21,8 +21,13 @@ test:
 	./build/tests
 	lcov --capture --directory src --base-directory . -o $(output_dir)/report_output.out
 	genhtml -o $(output_dir)/coverage_report $(output_dir)/report_output.out
-	lcov --zerocounters --directory .
-	find . -name "*.gcno" -delete
+	$(MAKE) clean-tmps
 
 clean:
-	rm -rf $(o_files) $(output_dir)
+	rm -rf $(output_dir)
+	$(MAKE) clean-tmps
+
+clean-tmps:
+	rm -rf $(o_files)
+	lcov --zerocounters --directory .
+	find . -name "*.gcno" -delete
