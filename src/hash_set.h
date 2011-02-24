@@ -22,6 +22,13 @@ public:
   virtual ~HashSetIterator();
 };
 
+/**
+ * A HashSet uses a Hash Function to determine the position in a table,
+ * where the value should be inserted.
+ * Complexity of insertion is O(1) + O(CollisionResolution),
+ * where CollisionResolution is the algorithm used when two values
+ * are hashed to the same value
+**/
 class HashSet: public Set {
 protected:
   int table_size;

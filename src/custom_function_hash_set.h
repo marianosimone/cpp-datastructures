@@ -16,6 +16,7 @@ public:
 class CustomFunctionHashSet: public HashSet {
 private:
   HashFunction* function;
+
 public:
   /**
    * function should point to an instance in the heap,
@@ -30,7 +31,6 @@ public:
 
 protected:
   virtual int hash(int value) const;
-
 };
 
 #endif
