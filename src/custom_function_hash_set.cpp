@@ -9,5 +9,6 @@ CustomFunctionHashSet::~CustomFunctionHashSet() {
 }
 
 int CustomFunctionHashSet::hash(int value) const {
+  // Just delegate this call to the function
   return this->function->hash(value, this->table_size);
 }

@@ -92,6 +92,14 @@ int HashSet::hash(int value) const {
   return value % this->table_size;
 }
 
+/**
+ * If the value is not already on its corresponding list,
+ * then it's added.
+ * After that, if checkOverflow is true, overflow checking is
+ * performed and, an overflow is found, the table is recreated,
+ * changing some parameter of the hashing function, in order to
+ * allow more values to be inserted
+**/
 void HashSet::innerAdd(int data, bool checkOverflow) {
   int position = this->hash(data);
   if (!this->table[position]->contains(data)){
@@ -103,6 +111,14 @@ void HashSet::innerAdd(int data, bool checkOverflow) {
   }
 }
 
+/**
+ * This is a global overflow cheking algorithm.
+ * It doesn't depend on how many values hash to a certain one,
+ * (if we consider the hash function to be good enough, this
+ * kind of checking wouldn't be THAT useful), but on how many
+ * values are on the set, in relation with how many elements
+ * the hashing space allows 
+**/
 void HashSet::doCheckOverflow() {
   if (this->loadFactor() > this->load_factor_limit) {
     this->rehashEverything();
