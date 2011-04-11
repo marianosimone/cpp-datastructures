@@ -4,6 +4,7 @@
 #include "../src/list_backed_set.h"
 #include "../src/hash_set.h"
 #include "../src/custom_function_hash_set.h"
+#include "../src/arrays_set.h"
 
 // Factory method template to create sets
 template <class T>
@@ -28,6 +29,11 @@ class ModHashFunction: public HashFunction {
 template <>
 Set* CreateSet<CustomFunctionHashSet>() {
   return new CustomFunctionHashSet(new ModHashFunction());
+}
+
+template <>
+Set* CreateSet<ArraysSet>() {
+  return new ArraysSet;
 }
 
 // Test Fixture, for grouping all common functionallity
